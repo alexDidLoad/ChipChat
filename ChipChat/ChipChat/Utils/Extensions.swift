@@ -19,8 +19,8 @@ extension UIView {
                 paddingLeading: CGFloat = 0,
                 paddingBottom: CGFloat = 0,
                 paddingTrailing: CGFloat = 0,
-                width: CGFloat? = nil,
-                height: CGFloat? = nil) {
+                height: CGFloat? = nil,
+                width: CGFloat? = nil) {
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -40,12 +40,12 @@ extension UIView {
             trailingAnchor.constraint(equalTo: trailing, constant: -paddingTrailing).isActive = true
         }
         
-        if let width = width {
-            widthAnchor.constraint(equalToConstant: width).isActive = true
-        }
-        
         if let height = height {
             heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+        
+        if let width = width {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
         }
     }
     
@@ -66,6 +66,16 @@ extension UIView {
     func setDimensions(height: CGFloat, width: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: height).isActive = true
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+    
+    func setHeight(height: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+    
+    func setWidth(width: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: width).isActive = true
     }
     

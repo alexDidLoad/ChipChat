@@ -16,10 +16,31 @@ class LoginController: UIViewController {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "bubble.right")
         iv.tintColor = .white
-        
         return iv
     }()
     
+    private let emailContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.setHeight(height: 50)
+        return view
+    }()
+    
+    private let passwordContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .green
+        view.setHeight(height: 50)
+        return view
+    }()
+    
+    private let authButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Log In", for: .normal)
+        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.backgroundColor = .white
+        return button
+    }()
     
     //MARK: - Lifecycle
     
@@ -36,13 +57,26 @@ class LoginController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         //changes status bar to white
         navigationController?.navigationBar.barStyle = .black
-
+        
         configureGradientLayer()
         
         view.addSubview(iconImage)
+        iconImage.centerX(inView: view)
+        iconImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32, height: 120, width: 120)
         
-        
-        
+        //adding component views into stack view
+        let stack = UIStackView(arrangedSubviews: [emailContainerView,
+                                                   passwordContainerView,
+                                                   authButton])
+        stack.axis = .vertical
+        stack.spacing = 16
+        view.addSubview(stack)
+        stack.anchor(top: iconImage.bottomAnchor,
+                     leading: view.leadingAnchor,
+                     trailing: view.trailingAnchor,
+                     paddingTop: 32,
+                     paddingLeading: 32,
+                     paddingTrailing: 32)
     }
     
     func configureGradientLayer() {
