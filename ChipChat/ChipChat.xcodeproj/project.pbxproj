@@ -16,6 +16,7 @@
 		11F7E23F256FA806000B8B30 /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E23E256FA806000B8B30 /* ConversationsController.swift */; };
 		11F7E243256FB167000B8B30 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E242256FB167000B8B30 /* LoginController.swift */; };
 		11F7E247256FB16E000B8B30 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E246256FB16E000B8B30 /* RegistrationController.swift */; };
+		11F7E24A256FB752000B8B30 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E249256FB752000B8B30 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		11F7E23E256FA806000B8B30 /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		11F7E242256FB167000B8B30 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		11F7E246256FB16E000B8B30 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		11F7E249256FB752000B8B30 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		11F7E233256FA787000B8B30 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				11F7E249256FB752000B8B30 /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				11F7E220256FA773000B8B30 /* SceneDelegate.swift in Sources */,
 				11F7E247256FB16E000B8B30 /* RegistrationController.swift in Sources */,
 				11F7E243256FB167000B8B30 /* LoginController.swift in Sources */,
+				11F7E24A256FB752000B8B30 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

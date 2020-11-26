@@ -38,6 +38,11 @@ class LoginController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
 
         configureGradientLayer()
+        
+        view.addSubview(iconImage)
+        
+        
+        
     }
     
     func configureGradientLayer() {
