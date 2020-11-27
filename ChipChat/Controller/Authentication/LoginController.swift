@@ -19,26 +19,39 @@ class LoginController: UIViewController {
         return iv
     }()
     
-    private let emailContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.setHeight(height: 50)
-        return view
+    //Created lazily in order to add emailTextField which may not exist at the time of creation
+    private lazy var emailContainerView: InputContainerView = {
+        return InputContainerView(image: "envelope", textField: emailTextField)
     }()
     
-    private let passwordContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .green
-        view.setHeight(height: 50)
-        return view
+    private lazy var passwordContainerView: UIView = {
+        return InputContainerView(image: "lock", textField: passwordTextField)
     }()
     
-    private let authButton: UIButton = {
+    private let emailTextField = CustomTextField(placeholder: "Email")
+    
+    private let passwordTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "Password")
+        tf.isSecureTextEntry = true
+        return tf
+    }()
+    
+    private let loginButton: CustomAuthButton = {
+        let button = CustomAuthButton(title: "Log In")
+        button.addTarget(self, action: #selector(handleLoginPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    private let dontHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
-        button.layer.cornerRadius = 10
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = .white
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ",
+                                                        attributes: [.font : UIFont.systemFont(ofSize: 16),
+                                                                     .foregroundColor : UIColor.white])
+        attributedTitle.append(NSAttributedString(string: "Sign Up",
+                                                  attributes: [.font : UIFont.boldSystemFont(ofSize: 16),
+                                                               .foregroundColor: UIColor.white]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         return button
     }()
     
@@ -49,6 +62,17 @@ class LoginController: UIViewController {
         
         configureUI()
         
+    }
+    
+    //MARK: - Selectors
+    
+    @objc func handleLoginPressed() {
+        print("login pressed")
+    }
+    
+    @objc func handleShowSignUp() {
+        let vc = RegistrationController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - Helpers
@@ -67,7 +91,7 @@ class LoginController: UIViewController {
         //adding component views into stack view
         let stack = UIStackView(arrangedSubviews: [emailContainerView,
                                                    passwordContainerView,
-                                                   authButton])
+                                                   loginButton])
         stack.axis = .vertical
         stack.spacing = 16
         view.addSubview(stack)
@@ -77,18 +101,10 @@ class LoginController: UIViewController {
                      paddingTop: 32,
                      paddingLeading: 32,
                      paddingTrailing: 32)
-    }
-    
-    func configureGradientLayer() {
-        let gradient = CAGradientLayer()
-        gradient.colors = [#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor, #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1).cgColor]
-        //sets the two points at the top to the bottom
-        gradient.locations = [0, 1]
         
-        view.layer.addSublayer(gradient)
-        gradient.frame = view.frame
+        view.addSubview(dontHaveAccountButton)
+        dontHaveAccountButton.centerX(inView: view)
+        dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
-    
-    
     
 }

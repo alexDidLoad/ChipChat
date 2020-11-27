@@ -17,6 +17,9 @@
 		11F7E243256FB167000B8B30 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E242256FB167000B8B30 /* LoginController.swift */; };
 		11F7E247256FB16E000B8B30 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E246256FB16E000B8B30 /* RegistrationController.swift */; };
 		11F7E24A256FB752000B8B30 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E249256FB752000B8B30 /* Extensions.swift */; };
+		11F7E24D2570EFF9000B8B30 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E24C2570EFF9000B8B30 /* InputContainerView.swift */; };
+		11F7E2502570F2F5000B8B30 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */; };
+		11F7E2572570FF90000B8B30 /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,10 @@
 		11F7E242256FB167000B8B30 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		11F7E246256FB16E000B8B30 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		11F7E249256FB752000B8B30 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		11F7E24C2570EFF9000B8B30 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
+		11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
+		11F7E25925710941000B8B30 /* ChipChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChipChat.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +71,7 @@
 		11F7E21C256FA773000B8B30 /* ChipChat */ = {
 			isa = PBXGroup;
 			children = (
+				11F7E25925710941000B8B30 /* ChipChat.entitlements */,
 				11F7E23C256FA7C5000B8B30 /* Model */,
 				11F7E23B256FA7C2000B8B30 /* View */,
 				11F7E23A256FA7C0000B8B30 /* View Model */,
@@ -116,6 +124,9 @@
 		11F7E23B256FA7C2000B8B30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				11F7E24C2570EFF9000B8B30 /* InputContainerView.swift */,
+				11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */,
+				11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,12 +218,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				11F7E222256FA773000B8B30 /* ViewController.swift in Sources */,
+				11F7E24D2570EFF9000B8B30 /* InputContainerView.swift in Sources */,
 				11F7E21E256FA773000B8B30 /* AppDelegate.swift in Sources */,
 				11F7E23F256FA806000B8B30 /* ConversationsController.swift in Sources */,
 				11F7E220256FA773000B8B30 /* SceneDelegate.swift in Sources */,
 				11F7E247256FB16E000B8B30 /* RegistrationController.swift in Sources */,
+				11F7E2572570FF90000B8B30 /* CustomAuthButton.swift in Sources */,
 				11F7E243256FB167000B8B30 /* LoginController.swift in Sources */,
 				11F7E24A256FB752000B8B30 /* Extensions.swift in Sources */,
+				11F7E2502570F2F5000B8B30 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ChipChat/ChipChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 584W76NDBF;
 				INFOPLIST_FILE = ChipChat/Info.plist;
@@ -378,6 +393,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ChipChat/ChipChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 584W76NDBF;
 				INFOPLIST_FILE = ChipChat/Info.plist;
