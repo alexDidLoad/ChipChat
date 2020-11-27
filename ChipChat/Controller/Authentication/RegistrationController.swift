@@ -11,6 +11,8 @@ class RegistrationController: UIViewController {
     
     //MARK: - Properties
     
+    private var registerViewModel = AuthViewModel()
+    
     private let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "addPhoto"), for: .normal)
@@ -65,9 +67,6 @@ class RegistrationController: UIViewController {
         return button
     }()
     
-    
-    
-    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -90,6 +89,20 @@ class RegistrationController: UIViewController {
     
     @objc func handleShowLogin() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func textDidChange(sender: UITextField) {
+        
+        if sender == emailTextField {
+            registerViewModel.email = sender.text
+        } else if sender == fullnameTextField {
+            registerViewModel.fullname = sender.text
+        } else if sender == usernameTextField {
+            registerViewModel.username = sender.text
+        } else {
+            registerViewModel.password = sender.text
+        }
+        checkFormStatus()
     }
     
     //MARK: - Helpers
@@ -124,6 +137,21 @@ class RegistrationController: UIViewController {
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.centerX(inView: view)
         alreadyHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
+    func checkFormStatus() {
+        if registerViewModel.formIsValid {
+            signUpButton.isEnabled = true
+            signUpButton.backgroundColor = .white
+        } else {
+            signUpButton.isEnabled = false
+            signUpButton.backgroundColor = .init(white: 1, alpha: 0.25)
+        }
     }
     
 }

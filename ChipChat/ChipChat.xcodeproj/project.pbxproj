@@ -20,6 +20,7 @@
 		11F7E24D2570EFF9000B8B30 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E24C2570EFF9000B8B30 /* InputContainerView.swift */; };
 		11F7E2502570F2F5000B8B30 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */; };
 		11F7E2572570FF90000B8B30 /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */; };
+		11F7E25C25710B3A000B8B30 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E25B25710B3A000B8B30 /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		11F7E25925710941000B8B30 /* ChipChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChipChat.entitlements; sourceTree = "<group>"; };
+		11F7E25B25710B3A000B8B30 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		11F7E23A256FA7C0000B8B30 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				11F7E25B25710B3A000B8B30 /* AuthViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			files = (
 				11F7E222256FA773000B8B30 /* ViewController.swift in Sources */,
 				11F7E24D2570EFF9000B8B30 /* InputContainerView.swift in Sources */,
+				11F7E25C25710B3A000B8B30 /* AuthViewModel.swift in Sources */,
 				11F7E21E256FA773000B8B30 /* AppDelegate.swift in Sources */,
 				11F7E23F256FA806000B8B30 /* ConversationsController.swift in Sources */,
 				11F7E220256FA773000B8B30 /* SceneDelegate.swift in Sources */,

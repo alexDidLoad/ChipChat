@@ -11,6 +11,8 @@ class LoginController: UIViewController {
     
     //MARK: - Properties
     
+    private var loginViewModel = AuthViewModel()
+    
     //creating view component programmatically
     private let iconImage: UIImageView = {
         let iv = UIImageView()
@@ -75,6 +77,15 @@ class LoginController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            loginViewModel.email = sender.text
+        } else {
+            loginViewModel.password = sender.text
+        }
+        checkFormStatus()
+    }
+    
     //MARK: - Helpers
     
     func configureUI() {
@@ -105,6 +116,20 @@ class LoginController: UIViewController {
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.centerX(inView: view)
         dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
+    func checkFormStatus() {
+        
+        if loginViewModel.formIsValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = .white
+        } else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = .init(white: 1, alpha: 0.25)
+        }
     }
     
 }
