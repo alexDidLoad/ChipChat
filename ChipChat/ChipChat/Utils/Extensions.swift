@@ -81,6 +81,8 @@ extension UIView {
     
 }
 
+//MARK: - Extension for Gradient Layer
+
 extension UIViewController {
     
     func configureGradientLayer() {

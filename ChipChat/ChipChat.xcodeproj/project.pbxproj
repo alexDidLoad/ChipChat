@@ -20,10 +20,14 @@
 		11F7E24D2570EFF9000B8B30 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E24C2570EFF9000B8B30 /* InputContainerView.swift */; };
 		11F7E2502570F2F5000B8B30 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */; };
 		11F7E2572570FF90000B8B30 /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */; };
-		11F7E25C25710B3A000B8B30 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E25B25710B3A000B8B30 /* AuthViewModel.swift */; };
+		11F7E25C25710B3A000B8B30 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E25B25710B3A000B8B30 /* LoginViewModel.swift */; };
+		11F7E26125714A8F000B8B30 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E26025714A8F000B8B30 /* RegistrationViewModel.swift */; };
+		11F7E267257152AE000B8B30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11F7E266257152AE000B8B30 /* GoogleService-Info.plist */; };
+		B55DDC1B2BE6A412DA08E3A2 /* Pods_ChipChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4998FAE1DF718C61CB398215 /* Pods_ChipChat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0698C4D29904BA6B507830A6 /* Pods-ChipChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChipChat.release.xcconfig"; path = "Target Support Files/Pods-ChipChat/Pods-ChipChat.release.xcconfig"; sourceTree = "<group>"; };
 		11F7E21A256FA773000B8B30 /* ChipChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChipChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F7E21D256FA773000B8B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11F7E21F256FA773000B8B30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +44,11 @@
 		11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		11F7E25925710941000B8B30 /* ChipChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChipChat.entitlements; sourceTree = "<group>"; };
-		11F7E25B25710B3A000B8B30 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		11F7E25B25710B3A000B8B30 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		11F7E26025714A8F000B8B30 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		11F7E266257152AE000B8B30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4998FAE1DF718C61CB398215 /* Pods_ChipChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChipChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE9369E9302BF1F6D8DCD7BC /* Pods-ChipChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChipChat.debug.xcconfig"; path = "Target Support Files/Pods-ChipChat/Pods-ChipChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55DDC1B2BE6A412DA08E3A2 /* Pods_ChipChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +68,8 @@
 			children = (
 				11F7E21C256FA773000B8B30 /* ChipChat */,
 				11F7E21B256FA773000B8B30 /* Products */,
+				B56D2A60B5CD37A4CC584075 /* Pods */,
+				A68E27DA25E341320322CE7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +98,7 @@
 				11F7E226256FA776000B8B30 /* Assets.xcassets */,
 				11F7E228256FA776000B8B30 /* LaunchScreen.storyboard */,
 				11F7E22B256FA776000B8B30 /* Info.plist */,
+				11F7E266257152AE000B8B30 /* GoogleService-Info.plist */,
 			);
 			path = ChipChat;
 			sourceTree = "<group>";
@@ -119,7 +131,7 @@
 		11F7E23A256FA7C0000B8B30 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				11F7E25B25710B3A000B8B30 /* AuthViewModel.swift */,
+				11F7E26425714B43000B8B30 /* Authentication */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -150,6 +162,33 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		11F7E26425714B43000B8B30 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				11F7E25B25710B3A000B8B30 /* LoginViewModel.swift */,
+				11F7E26025714A8F000B8B30 /* RegistrationViewModel.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		A68E27DA25E341320322CE7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4998FAE1DF718C61CB398215 /* Pods_ChipChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B56D2A60B5CD37A4CC584075 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE9369E9302BF1F6D8DCD7BC /* Pods-ChipChat.debug.xcconfig */,
+				0698C4D29904BA6B507830A6 /* Pods-ChipChat.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,9 +196,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11F7E22E256FA776000B8B30 /* Build configuration list for PBXNativeTarget "ChipChat" */;
 			buildPhases = (
+				C9F87DF1CB4B56A8B6ED8437 /* [CP] Check Pods Manifest.lock */,
 				11F7E216256FA773000B8B30 /* Sources */,
 				11F7E217256FA773000B8B30 /* Frameworks */,
 				11F7E218256FA773000B8B30 /* Resources */,
+				291908A27753B459F181E3F0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -208,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11F7E22A256FA776000B8B30 /* LaunchScreen.storyboard in Resources */,
+				11F7E267257152AE000B8B30 /* GoogleService-Info.plist in Resources */,
 				11F7E227256FA776000B8B30 /* Assets.xcassets in Resources */,
 				11F7E225256FA773000B8B30 /* Main.storyboard in Resources */,
 			);
@@ -215,14 +257,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		291908A27753B459F181E3F0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChipChat/Pods-ChipChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChipChat/Pods-ChipChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChipChat/Pods-ChipChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9F87DF1CB4B56A8B6ED8437 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChipChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		11F7E216256FA773000B8B30 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				11F7E222256FA773000B8B30 /* ViewController.swift in Sources */,
+				11F7E26125714A8F000B8B30 /* RegistrationViewModel.swift in Sources */,
 				11F7E24D2570EFF9000B8B30 /* InputContainerView.swift in Sources */,
-				11F7E25C25710B3A000B8B30 /* AuthViewModel.swift in Sources */,
+				11F7E25C25710B3A000B8B30 /* LoginViewModel.swift in Sources */,
 				11F7E21E256FA773000B8B30 /* AppDelegate.swift in Sources */,
 				11F7E23F256FA806000B8B30 /* ConversationsController.swift in Sources */,
 				11F7E220256FA773000B8B30 /* SceneDelegate.swift in Sources */,
@@ -374,6 +459,7 @@
 		};
 		11F7E22F256FA776000B8B30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE9369E9302BF1F6D8DCD7BC /* Pods-ChipChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -381,6 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 584W76NDBF;
 				INFOPLIST_FILE = ChipChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,6 +481,7 @@
 		};
 		11F7E230256FA776000B8B30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0698C4D29904BA6B507830A6 /* Pods-ChipChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -401,6 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 584W76NDBF;
 				INFOPLIST_FILE = ChipChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

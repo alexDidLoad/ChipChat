@@ -11,14 +11,14 @@ class RegistrationController: UIViewController {
     
     //MARK: - Properties
     
-    private var registerViewModel = AuthViewModel()
+    private var registerViewModel = RegistrationViewModel()
     
     private let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "addPhoto"), for: .normal)
         button.tintColor = .white
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(handleAddPhoto), for: .touchUpInside)
-        
         return button
     }()
     
@@ -73,14 +73,18 @@ class RegistrationController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureNotificationObserver()
         
     }
-    
     
     //MARK: - Selectors
     
     @objc func handleAddPhoto() {
-        print("add photo button pressed")
+        //allows you to select an image/video
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+        
     }
     
     @objc func handleSignUpPressed() {
@@ -118,8 +122,8 @@ class RegistrationController: UIViewController {
                               height: 200,
                               width: 200)
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView,
-                                                   fullnameContainerView,
+        let stack = UIStackView(arrangedSubviews: [fullnameContainerView,
+                                                   emailContainerView,
                                                    usernameContainerView,
                                                    passwordContainerView,
                                                    signUpButton])
@@ -137,12 +141,42 @@ class RegistrationController: UIViewController {
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.centerX(inView: view)
         alreadyHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
-        
+    }
+    
+    
+    func configureNotificationObserver() {
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
+}
+
+//MARK: - UIImagePickerControllerDelegate
+
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        //grabs selected image from picker
+        let image = info[.originalImage] as? UIImage
+        
+        //sets image to the button
+        addPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        addPhotoButton.layer.borderColor = UIColor.white.cgColor
+        addPhotoButton.layer.borderWidth = 3.0
+        addPhotoButton.layer.cornerRadius = addPhotoButton.frame.width / 2
+        addPhotoButton.imageView?.contentMode = .scaleAspectFill
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+}
+
+//MARK: - Authentication Protocol
+
+extension RegistrationController: AuthenticationControllerProtocol {
     
     func checkFormStatus() {
         if registerViewModel.formIsValid {
@@ -153,5 +187,4 @@ class RegistrationController: UIViewController {
             signUpButton.backgroundColor = .init(white: 1, alpha: 0.25)
         }
     }
-    
 }

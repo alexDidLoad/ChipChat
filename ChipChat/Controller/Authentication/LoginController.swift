@@ -7,11 +7,15 @@
 
 import UIKit
 
+protocol AuthenticationControllerProtocol {
+    func checkFormStatus()
+}
+
 class LoginController: UIViewController {
     
     //MARK: - Properties
     
-    private var loginViewModel = AuthViewModel()
+    private var loginViewModel = LoginViewModel()
     
     //creating view component programmatically
     private let iconImage: UIImageView = {
@@ -121,8 +125,13 @@ class LoginController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
     
+}
+
+//MARK: - Authentication Protocol
+
+extension LoginController: AuthenticationControllerProtocol {
+    
     func checkFormStatus() {
-        
         if loginViewModel.formIsValid {
             loginButton.isEnabled = true
             loginButton.backgroundColor = .white
