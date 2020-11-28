@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -185,7 +185,6 @@
 				AE9369E9302BF1F6D8DCD7BC /* Pods-ChipChat.debug.xcconfig */,
 				0698C4D29904BA6B507830A6 /* Pods-ChipChat.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

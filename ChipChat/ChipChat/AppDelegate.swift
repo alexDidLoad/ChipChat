@@ -17,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         FirebaseApp.configure()
         
+        //1. make sure user gets added to authentication list
+        
+        //2. add user information to cloud firestore database
+        
+        //3. set up firebase storage
+            // change
+        
         return true
     }
 

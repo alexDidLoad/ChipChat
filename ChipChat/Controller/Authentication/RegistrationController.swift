@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
@@ -17,10 +18,13 @@ class RegistrationController: UIViewController {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "addPhoto"), for: .normal)
         button.tintColor = .white
+        button.imageView?.contentMode = .scaleAspectFill
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(handleAddPhoto), for: .touchUpInside)
         return button
     }()
+    
+    private var profileImage: UIImage?
     
     private lazy var emailContainerView: InputContainerView = {
         return InputContainerView(image: "envelope", textField: emailTextField)
@@ -88,7 +92,55 @@ class RegistrationController: UIViewController {
     }
     
     @objc func handleSignUpPressed() {
-        print("sign up pressed")
+        //grab the users profile image, and all the info in the text fields and send it to database
+        guard let profileImage = profileImage else { return }
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullnameTextField.text else { return }
+        guard let username = usernameTextField.text?.lowercased() else { return }
+        
+        //upload profile image
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        
+        let filename = NSUUID().uuidString
+        let reference = Storage.storage().reference(withPath: "/profile_image/\(filename)")
+        
+        reference.putData(imageData, metadata: nil) { (meta, error) in
+            //handle error
+            if let error = error {
+                print("DEBUG: Failed to upload image with error \(error.localizedDescription)")
+                return
+            }
+            reference.downloadURL { (url, error) in
+                guard let profileImageURL = url?.absoluteString else { return }
+                
+                //create and authenticate user
+                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                    if let error = error {
+                        print("DEBUG: Failed to create user with error \(error.localizedDescription)")
+                        return
+                    }
+                    guard let uid = result?.user.uid else { return }
+                    
+                    //creating data dictionary
+                    let data = ["profileImageURL" : profileImageURL,
+                                "email" : email,
+                                "password" : password,
+                                "username" : username,
+                                "uid" : uid,
+                                "fullname" : fullname] as [String : Any]
+                    
+                    //upload information to database
+                    Firestore.firestore().collection("users").document(uid).setData(data) { error in
+                        if let error = error {
+                            print("DEBUG: Failed to upload user data with error \(error.localizedDescription)")
+                            return
+                        }
+                        print("DEBUG: Did create user...")
+                    }
+                }
+            }
+        }
     }
     
     @objc func handleShowLogin() {
@@ -160,7 +212,7 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         
         //grabs selected image from picker
         let image = info[.originalImage] as? UIImage
-        
+        profileImage = image
         //sets image to the button
         addPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         addPhotoButton.layer.borderColor = UIColor.white.cgColor
