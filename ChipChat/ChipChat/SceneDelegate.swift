@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
     
         // This will set our rootViewController to be our ConversationController Class
-        let nav = UINavigationController(rootViewController: LoginController())
+        let nav = UINavigationController(rootViewController: ConversationsController())
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }
