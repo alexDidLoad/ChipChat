@@ -99,47 +99,15 @@ class RegistrationController: UIViewController {
         guard let fullname = fullnameTextField.text else { return }
         guard let username = usernameTextField.text?.lowercased() else { return }
         
-        //upload profile image
-        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        let credentials = RegistrationCredentials(email: email, password: password,
+                                                  fullname: fullname, username: username,
+                                                  profileImage: profileImage)
         
-        let filename = NSUUID().uuidString
-        let reference = Storage.storage().reference(withPath: "/profile_image/\(filename)")
-        
-        reference.putData(imageData, metadata: nil) { (meta, error) in
-            //handle error
+        AuthService.shared.createUser(credentials: credentials) { error in
             if let error = error {
-                print("DEBUG: Failed to upload image with error \(error.localizedDescription)")
-                return
+                print("DEBUG: Failed to create user: \(error.localizedDescription)")
             }
-            reference.downloadURL { (url, error) in
-                guard let profileImageURL = url?.absoluteString else { return }
-                
-                //create and authenticate user
-                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                    if let error = error {
-                        print("DEBUG: Failed to create user with error \(error.localizedDescription)")
-                        return
-                    }
-                    guard let uid = result?.user.uid else { return }
-                    
-                    //creating data dictionary
-                    let data = ["profileImageURL" : profileImageURL,
-                                "email" : email,
-                                "password" : password,
-                                "username" : username,
-                                "uid" : uid,
-                                "fullname" : fullname] as [String : Any]
-                    
-                    //upload information to database
-                    Firestore.firestore().collection("users").document(uid).setData(data) { error in
-                        if let error = error {
-                            print("DEBUG: Failed to upload user data with error \(error.localizedDescription)")
-                            return
-                        }
-                        print("DEBUG: Did create user...")
-                    }
-                }
-            }
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -222,8 +190,6 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         
         dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
 //MARK: - Authentication Protocol
