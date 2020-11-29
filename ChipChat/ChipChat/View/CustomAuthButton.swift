@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class CustomAuthButton: UIButton {
     
     init(title: String) {

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class InputContainerView: UIView {
     
     init(image: String, textField: UITextField) {
