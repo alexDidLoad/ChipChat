@@ -79,7 +79,7 @@ class ConversationsController: UIViewController {
         
         view.backgroundColor = .white
         
-        configureNavBar()
+        configureNavBar(withTitle: "Messages", prefersLargeTitle: true)
         configureTableView()
         
         let image = UIImage(systemName: "person.circle.fill")
@@ -88,27 +88,6 @@ class ConversationsController: UIViewController {
         view.addSubview(newMessageButton)
         newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, paddingBottom: 16, paddingTrailing: 24)
         
-    }
-    
-    func configureNavBar() {
-        
-        //Creating a constant with our customized settings
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
-        //Sets all of the navigation bar's attributes to our constant 'appearance'
-        navigationItem.title = "Messages"
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.tintColor = .white
-        
-        //overrides status bar to be white (battery | wifi symbol | time)
-        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
     }
     
     func configureTableView() {
@@ -152,12 +131,15 @@ extension ConversationsController: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
 }
 
 extension ConversationsController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        print(indexPath.row)
+    }
     
 }

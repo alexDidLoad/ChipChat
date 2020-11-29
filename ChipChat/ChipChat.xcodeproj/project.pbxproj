@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		11A4BCB62572CC5500C09D7A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4BCB52572CC5500C09D7A /* AuthService.swift */; };
 		11A4BCB92574151D00C09D7A /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4BCB82574151D00C09D7A /* NewMessageController.swift */; };
+		11A4BCBC257422D200C09D7A /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4BCBB257422D200C09D7A /* UserCell.swift */; };
 		11F7E21E256FA773000B8B30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E21D256FA773000B8B30 /* AppDelegate.swift */; };
 		11F7E220256FA773000B8B30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E21F256FA773000B8B30 /* SceneDelegate.swift */; };
 		11F7E222256FA773000B8B30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E221256FA773000B8B30 /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 		0698C4D29904BA6B507830A6 /* Pods-ChipChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChipChat.release.xcconfig"; path = "Target Support Files/Pods-ChipChat/Pods-ChipChat.release.xcconfig"; sourceTree = "<group>"; };
 		11A4BCB52572CC5500C09D7A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		11A4BCB82574151D00C09D7A /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		11A4BCBB257422D200C09D7A /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		11F7E21A256FA773000B8B30 /* ChipChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChipChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F7E21D256FA773000B8B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11F7E21F256FA773000B8B30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				11F7E24C2570EFF9000B8B30 /* InputContainerView.swift */,
 				11F7E24F2570F2F5000B8B30 /* CustomTextField.swift */,
 				11F7E2562570FF90000B8B30 /* CustomAuthButton.swift */,
+				11A4BCBB257422D200C09D7A /* UserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				11F7E21E256FA773000B8B30 /* AppDelegate.swift in Sources */,
 				11F7E23F256FA806000B8B30 /* ConversationsController.swift in Sources */,
 				11A4BCB62572CC5500C09D7A /* AuthService.swift in Sources */,
+				11A4BCBC257422D200C09D7A /* UserCell.swift in Sources */,
 				11F7E220256FA773000B8B30 /* SceneDelegate.swift in Sources */,
 				11F7E247256FB16E000B8B30 /* RegistrationController.swift in Sources */,
 				11F7E2572570FF90000B8B30 /* CustomAuthButton.swift in Sources */,

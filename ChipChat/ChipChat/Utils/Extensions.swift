@@ -132,4 +132,26 @@ extension UIViewController {
         self.view.endEditing(true)
     }
     
+    func configureNavBar(withTitle title: String, prefersLargeTitle: Bool) {
+        
+        //Creating a constant with our customized settings
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        
+        //Sets all of the navigation bar's attributes to our constant 'appearance'
+        navigationItem.title = title
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitle
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = .white
+        
+        //overrides status bar to be white (battery | wifi symbol | time)
+        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+    }
+
+    
 }
