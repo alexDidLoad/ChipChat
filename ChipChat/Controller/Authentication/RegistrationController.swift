@@ -103,12 +103,18 @@ class RegistrationController: UIViewController {
                                                   fullname: fullname, username: username,
                                                   profileImage: profileImage)
         
+        showProgressHud(true, withText: "Registering...")
+        
         AuthService.shared.createUser(credentials: credentials) { error in
             if let error = error {
                 print("DEBUG: Failed to create user: \(error.localizedDescription)")
+                self.showProgressHud(false)
+                return
             }
+            self.showProgressHud(false)
             self.dismiss(animated: true, completion: nil)
         }
+        signUpButton.bounce()
     }
     
     @objc func handleShowLogin() {
@@ -127,6 +133,15 @@ class RegistrationController: UIViewController {
             registerViewModel.password = sender.text
         }
         checkFormStatus()
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            view.frame.origin.y = -110
+        } else if notification.name == UIResponder.keyboardWillHideNotification {
+            view.frame.origin.y = .zero
+        }
     }
     
     //MARK: - Helpers
@@ -165,11 +180,21 @@ class RegistrationController: UIViewController {
     
     
     func configureNotificationObserver() {
+        
+        self.hideKeyboardOnTap()
+        
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    
+    
 }
 
 //MARK: - UIImagePickerControllerDelegate

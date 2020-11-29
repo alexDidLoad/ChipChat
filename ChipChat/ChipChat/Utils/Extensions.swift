@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import JGProgressHUD
 
-//MARK: - Extensions for constraints
+//MARK: - UIView Extensions
 
 extension UIView {
     
@@ -79,12 +80,26 @@ extension UIView {
         widthAnchor.constraint(equalToConstant: width).isActive = true
     }
     
+    //button animation
+    func bounce() {
+        UIView.animate(withDuration: 0.08) {
+            self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.08) {
+                self.transform = CGAffineTransform.identity
+            }
+        }
+    }
+    
 }
 
-//MARK: - Extension for Gradient Layer
+//MARK: - UIViewController Extensions
 
 extension UIViewController {
     
+    static let hud = JGProgressHUD(style: .dark)
+    
+    //Gradient CALayer
     func configureGradientLayer() {
         let gradient = CAGradientLayer()
         gradient.colors = [#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor, #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1).cgColor]
@@ -93,4 +108,28 @@ extension UIViewController {
         view.layer.addSublayer(gradient)
         gradient.frame = view.frame
     }
+    
+    //Progress Hud using firebase cocoapods
+    func showProgressHud(_ show: Bool, withText text: String? = "Loading") {
+        view.endEditing(true)
+        UIViewController.hud.textLabel.text = text
+       
+        if show {
+            UIViewController.hud.show(in: view)
+        } else {
+            UIViewController.hud.dismiss()
+        }
+    }
+    
+    //hiding keyboard on screen tap
+    func hideKeyboardOnTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+    
 }

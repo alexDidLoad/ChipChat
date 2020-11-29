@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 import Firebase
 
 protocol AuthenticationControllerProtocol {
@@ -77,13 +78,18 @@ class LoginController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        AuthService.shared.logUserIn(email: email, password: password) { (result, error) in
+        showProgressHud(true, withText: "Logging in")
+        
+        AuthService.shared.logUserIn(email: email, password: password) { [weak self] (result, error) in
             if let error = error {
                 print("DEBUG: Failed to login: \(error.localizedDescription)")
+                self?.showProgressHud(false)
                 return
             }
-            self.dismiss(animated: true, completion: nil)
+            self?.showProgressHud(false)
+            self?.dismiss(animated: true, completion: nil)
         }
+        loginButton.bounce()
     }
     
     @objc func handleShowSignUp() {
@@ -103,6 +109,9 @@ class LoginController: UIViewController {
     //MARK: - Helpers
     
     func configureUI() {
+        
+        hideKeyboardOnTap()
+        
         navigationController?.navigationBar.isHidden = true
         //changes status bar to white
         navigationController?.navigationBar.barStyle = .black

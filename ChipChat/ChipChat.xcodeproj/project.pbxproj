@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11A4BCB62572CC5500C09D7A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4BCB52572CC5500C09D7A /* AuthService.swift */; };
+		11A4BCB92574151D00C09D7A /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4BCB82574151D00C09D7A /* NewMessageController.swift */; };
 		11F7E21E256FA773000B8B30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E21D256FA773000B8B30 /* AppDelegate.swift */; };
 		11F7E220256FA773000B8B30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E21F256FA773000B8B30 /* SceneDelegate.swift */; };
 		11F7E222256FA773000B8B30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F7E221256FA773000B8B30 /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		0698C4D29904BA6B507830A6 /* Pods-ChipChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChipChat.release.xcconfig"; path = "Target Support Files/Pods-ChipChat/Pods-ChipChat.release.xcconfig"; sourceTree = "<group>"; };
 		11A4BCB52572CC5500C09D7A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		11A4BCB82574151D00C09D7A /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		11F7E21A256FA773000B8B30 /* ChipChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChipChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F7E21D256FA773000B8B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11F7E21F256FA773000B8B30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				11F7E241256FB15A000B8B30 /* Authentication */,
 				11F7E23E256FA806000B8B30 /* ConversationsController.swift */,
+				11A4BCB82574151D00C09D7A /* NewMessageController.swift */,
 			);
 			name = Controller;
 			path = ../Controller;
@@ -310,6 +313,7 @@
 				11F7E26125714A8F000B8B30 /* RegistrationViewModel.swift in Sources */,
 				11F7E24D2570EFF9000B8B30 /* InputContainerView.swift in Sources */,
 				11F7E25C25710B3A000B8B30 /* LoginViewModel.swift in Sources */,
+				11A4BCB92574151D00C09D7A /* NewMessageController.swift in Sources */,
 				11F7E21E256FA773000B8B30 /* AppDelegate.swift in Sources */,
 				11F7E23F256FA806000B8B30 /* ConversationsController.swift in Sources */,
 				11A4BCB62572CC5500C09D7A /* AuthService.swift in Sources */,

@@ -11,12 +11,24 @@ import Firebase
 
 private let reuseIdentifier = "conversationCell"
 
-
 class ConversationsController: UIViewController {
     
     //MARK: - Properties
     
     private let tableView = UITableView()
+    
+    private let newMessageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        button.tintColor = .white
+        button.imageView?.setDimensions(height: 36, width: 36)
+        button.setDimensions(height: 56, width: 56)
+        button.layer.cornerRadius = 56 / 2
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(showNewMessage), for: .touchUpInside)
+        return button
+    }()
     
     //MARK: - Lifecycle
     
@@ -31,32 +43,34 @@ class ConversationsController: UIViewController {
     //MARK: - Selectors
     
     @objc func showProfile() {
-        
         logout()
+    }
+    
+    @objc func showNewMessage() {
         
+        let msgController = NewMessageController()
+        let nav = UINavigationController(rootViewController: msgController)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
     //MARK: - API
     
     func authenticateUser() {
-        
         if Auth.auth().currentUser?.uid == nil {
             presentLoginScreen()
         } else {
-            print("DEBUG: User is logged in, UserID: \(Auth.auth().currentUser?.uid)")
+            print("DEBUG: User is logged in, UserID: \(Auth.auth().currentUser!.uid)")
         }
-        
     }
     
     func logout() {
-        
         do {
             try Auth.auth().signOut()
             presentLoginScreen()
         } catch {
             print("DEBUG: Error signing out...")
         }
-        
     }
     
     //MARK: - Helpers
@@ -70,6 +84,9 @@ class ConversationsController: UIViewController {
         
         let image = UIImage(systemName: "person.circle.fill")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showProfile))
+        
+        view.addSubview(newMessageButton)
+        newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, paddingBottom: 16, paddingTrailing: 24)
         
     }
     
@@ -89,7 +106,7 @@ class ConversationsController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.tintColor = .white
-      
+        
         //overrides status bar to be white (battery | wifi symbol | time)
         navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
     }
@@ -125,11 +142,11 @@ extension ConversationsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 2
-    
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         cell.textLabel?.text = "test cell"
         return cell
