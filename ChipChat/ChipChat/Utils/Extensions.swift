@@ -152,6 +152,5 @@ extension UIViewController {
         //overrides status bar to be white (battery | wifi symbol | time)
         navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
     }
-
     
 }

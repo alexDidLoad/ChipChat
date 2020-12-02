@@ -37,7 +37,6 @@ class ConversationsController: UIViewController {
         
         configureUI()
         authenticateUser()
-        
     }
     
     //MARK: - Selectors
@@ -49,6 +48,9 @@ class ConversationsController: UIViewController {
     @objc func showNewMessage() {
         
         let msgController = NewMessageController()
+        //This will make the ConversationController be the NewMessageControllers delegate
+        msgController.delegate = self
+        
         let nav = UINavigationController(rootViewController: msgController)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
@@ -136,10 +138,21 @@ extension ConversationsController: UITableViewDataSource {
 extension ConversationsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
         print(indexPath.row)
+    }
+    
+}
+
+//MARK: - NewMessageController Delegate
+
+//conforms to the NewMessageControllerDelegate protocol and is required to implement the controller function
+extension ConversationsController: NewMessageControllerDelegate {
+    
+    func controller(_ controller: NewMessageController, wantsToStartChatWith user: User) {
+        controller.dismiss(animated: true, completion: nil)
+        let chatVC = ChatController(user: user)
+        navigationController?.pushViewController(chatVC, animated: true)
     }
     
 }
