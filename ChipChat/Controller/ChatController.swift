@@ -68,14 +68,11 @@ class ChatController: UICollectionViewController {
 extension ChatController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        
         return messages.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         cell.message = messages[indexPath.row]
         return cell
@@ -89,25 +86,21 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 16, left: 0, bottom: 16, right: 0)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 50)
     }
-    
 }
 
 extension ChatController: CustomInputAccessoryViewDelegate {
-    
-    
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
-        fromCurrentUser.toggle()
         
-        inputView.messageInputTextView.text = nil
-        let message = Message(text: message, isFromCurrentUser: fromCurrentUser)
-        messages.append(message)
-        collectionView.reloadData()
+        Service.uploadMessage(message, to: user) { error in
+            if let error = error {
+                print("DEBUG: Failed to upload message: \(error.localizedDescription)")
+                return
+            }
+            inputView.messageInputTextView.text = nil
+        }
     }
-    
-    
-    
 }
