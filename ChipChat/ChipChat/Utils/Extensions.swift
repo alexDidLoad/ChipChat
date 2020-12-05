@@ -83,7 +83,7 @@ extension UIView {
     //button animation
     func bounce() {
         UIView.animate(withDuration: 0.08) {
-            self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         } completion: { _ in
             UIView.animate(withDuration: 0.08) {
                 self.transform = CGAffineTransform.identity

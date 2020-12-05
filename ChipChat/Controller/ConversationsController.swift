@@ -16,6 +16,7 @@ class ConversationsController: UIViewController {
     //MARK: - Properties
     
     private let tableView = UITableView()
+    private var conversations = [Conversation]()
     
     private let newMessageButton: UIButton = {
         let button = UIButton(type: .system)
@@ -37,12 +38,24 @@ class ConversationsController: UIViewController {
         
         configureUI()
         authenticateUser()
+        fetchConversations()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavBar(withTitle: "Messages", prefersLargeTitle: true)
     }
     
     //MARK: - Selectors
     
     @objc func showProfile() {
-        logout()
+       
+        let profileController = ProfileController(style: .insetGrouped)
+        profileController.delegate = self
+        let nav = UINavigationController(rootViewController: profileController)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+        
     }
     
     @objc func showNewMessage() {
@@ -57,6 +70,13 @@ class ConversationsController: UIViewController {
     }
     
     //MARK: - API
+    
+    func fetchConversations() {
+        Service.fetchConversations { conversations in
+            self.conversations = conversations
+            self.tableView.reloadData()
+        }
+    }
     
     func authenticateUser() {
         if Auth.auth().currentUser?.uid == nil {
@@ -80,8 +100,6 @@ class ConversationsController: UIViewController {
     func configureUI() {
         
         view.backgroundColor = .white
-        
-        configureNavBar(withTitle: "Messages", prefersLargeTitle: true)
         configureTableView()
         
         let image = UIImage(systemName: "person.circle.fill")
@@ -98,7 +116,7 @@ class ConversationsController: UIViewController {
         tableView.rowHeight = 80
         //removes separator lines if the cells contain nothing
         tableView.tableFooterView = UIView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ConversationsCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -115,6 +133,11 @@ class ConversationsController: UIViewController {
         }
     }
     
+    func showChatController(forUser user: User) {
+        let controller = ChatController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
 }
 
 //MARK: - ConversationsController TableView Extensions
@@ -122,14 +145,12 @@ class ConversationsController: UIViewController {
 extension ConversationsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2
-        
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = "test cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ConversationsCell
+        cell.conversation = conversations[indexPath.row]
         return cell
     }
     
@@ -139,7 +160,8 @@ extension ConversationsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
+        let user = conversations[indexPath.row].user
+        showChatController(forUser: user)
     }
     
 }
@@ -151,8 +173,15 @@ extension ConversationsController: NewMessageControllerDelegate {
     
     func controller(_ controller: NewMessageController, wantsToStartChatWith user: User) {
         controller.dismiss(animated: true, completion: nil)
-        let chatVC = ChatController(user: user)
-        navigationController?.pushViewController(chatVC, animated: true)
+        showChatController(forUser: user)
     }
     
+}
+
+//MARK: - ProfileControllerDelegate
+
+extension ConversationsController: ProfileControllerDelegate {
+    func handleLogout() {
+        logout()
+    }
 }

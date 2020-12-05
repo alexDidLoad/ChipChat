@@ -22,7 +22,6 @@ class MessageCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = .darkGray
         return iv
     }()
     
@@ -57,7 +56,7 @@ class MessageCell: UICollectionViewCell {
         
         addSubview(bubbleContainer)
         bubbleContainer.layer.cornerRadius = 12
-        bubbleContainer.anchor(top: topAnchor)
+        bubbleContainer.anchor(top: topAnchor, bottom: bottomAnchor)
         bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         bubbleLeadingAnchor = bubbleContainer.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 12)
         bubbleLeadingAnchor.isActive = false
@@ -88,7 +87,6 @@ class MessageCell: UICollectionViewCell {
         guard let message = message else { return }
         let viewModel = MessageViewModel(message: message)
         
-        
         bubbleContainer.backgroundColor = viewModel.messageBackgroundColor
         textView.textColor = viewModel.messageTextColor
         textView.text = message.text
@@ -97,6 +95,7 @@ class MessageCell: UICollectionViewCell {
         bubbleTrailingAnchor.isActive = viewModel.trailingAnchorActive
         
         profileImageView.isHidden = viewModel.shouldHideProfileImage
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
     }
     
 }
