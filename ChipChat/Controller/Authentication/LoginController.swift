@@ -88,8 +88,8 @@ class LoginController: UIViewController {
         
         AuthService.shared.logUserIn(email: email, password: password) { [weak self] (result, error) in
             if let error = error {
-                print("DEBUG: Failed to login: \(error.localizedDescription)")
                 self?.showProgressHud(false)
+                self?.showError(error.localizedDescription)
                 return
             }
             self?.showProgressHud(false)

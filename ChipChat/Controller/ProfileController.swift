@@ -51,7 +51,9 @@ class ProfileController: UITableViewController {
     
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        showProgressHud(true)
         Service.fetchUser(withUID: uid) { user in
+            self.showProgressHud(false)
             self.user = user
         }
     }

@@ -48,7 +48,9 @@ class NewMessageController: UITableViewController {
     //MARK: - API
     
     func fetchUsers() {
+        showProgressHud(true)
         Service.fetchUsers { [weak self] users in
+            self?.showProgressHud(false)
             self?.users = users
             self?.tableView.reloadData()
         }
