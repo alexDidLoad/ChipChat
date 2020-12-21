@@ -14,6 +14,8 @@ class RegistrationController: UIViewController {
     
     private var registerViewModel = RegistrationViewModel()
     
+    weak var delegate: AuthenticationDelegate?
+    
     private let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "addPhoto"), for: .normal)
@@ -112,7 +114,7 @@ class RegistrationController: UIViewController {
                 return
             }
             self.showProgressHud(false)
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
         }
         signUpButton.bounce()
     }

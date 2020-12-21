@@ -113,12 +113,15 @@ extension ProfileController {
         return UIView()
     }
 }
+//MARK: - ProfileHeaderDelegate
 
 extension ProfileController: ProfileHeaderDelegate {
     func dismissController() {
         dismiss(animated: true, completion: nil)
     }
 }
+
+//MARK: - FooterViewDelegate
 
 extension ProfileController: FooterViewDelegate {
     func handleLogout() {

@@ -13,11 +13,17 @@ protocol AuthenticationControllerProtocol {
     func checkFormStatus()
 }
 
+protocol AuthenticationDelegate: class {
+    func authenticationComplete()
+}
+
 class LoginController: UIViewController {
     
     //MARK: - Properties
     
     private var loginViewModel = LoginViewModel()
+    
+    weak var delegate: AuthenticationDelegate?
     
     //creating view component programmatically
     private let iconImage: UIImageView = {
@@ -87,13 +93,14 @@ class LoginController: UIViewController {
                 return
             }
             self?.showProgressHud(false)
-            self?.dismiss(animated: true, completion: nil)
+            self?.delegate?.authenticationComplete()
         }
         loginButton.bounce()
     }
     
     @objc func handleShowSignUp() {
         let vc = RegistrationController()
+        vc.delegate = delegate
         navigationController?.pushViewController(vc, animated: true)
     }
     

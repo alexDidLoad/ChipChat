@@ -13,17 +13,16 @@ struct Service {
     //completion block will enable us to use the user info in controller
     static func fetchUsers(completion: @escaping([User]) -> Void ) {
         
-        var users = [User]()
         //reaches out to firestore database with the users collection
             COLLECTION_USERS.getDocuments { snapshot, error in
             //loops through each document and retrieves the data
-            snapshot?.documents.forEach({ document in
-                let dictionary = document.data()
-                let user = User(dictionary: dictionary)
-                users.append(user)
+                guard var users = snapshot?.documents.map({ User(dictionary: $0.data()) }) else { return }
+                
+                if let index = users.firstIndex(where: { $0.uid == Auth.auth().currentUser?.uid}) {
+                    users.remove(at: index)
+                }
+
                 completion(users)
-            })
-            
         }
     }
     
@@ -88,7 +87,7 @@ struct Service {
                 let dictionary = change.document.data()
                 let message = Message(dictionary: dictionary)
                 
-                self.fetchUser(withUID: message.toID) { user in
+                self.fetchUser(withUID: message.chatPartnerID) { user in
                     let conversation = Conversation(user: user, message: message)
                     conversations.append(conversation)
                     completion(conversations)
